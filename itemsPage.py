@@ -9,7 +9,7 @@ class items():
         self.driver = my_driver
         self.text_result = (By.XPATH, '//h1[@class="ui-search-breadcrumb__title"]')
         self.select_delivery = (By.XPATH, '//span[contains(text(),"Gratis")]')
-        self.print = (By.XPATH, '//span[contains(text(),"resultados")]')
+        self.print = (By.XPATH, '//span[@class="ui-search-search-result__quantity-results"]')
         self.select = (By.XPATH, '//button[@class="andes-dropdown__trigger"]')
         self.sort_price = (By.XPATH, '//li[@value="price_desc"]')
 
@@ -20,7 +20,7 @@ class items():
         self.driver.execute_script("window.scrollTo(0,400)")
         WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(self.select_delivery)).click()
     
-    def print_results(self):
+    def print_quantity_of_results(self):
         return WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(self.print)).text
 
     def sort(self):

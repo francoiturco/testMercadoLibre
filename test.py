@@ -22,7 +22,7 @@ class Test(unittest.TestCase):
         self.index.search_item('leatherman surge')
         self.assertEqual(self.items.search_result(), 'Leatherman surge')
         self.items.select_free_delivery()
-        print(self.items.print_results())
+        print(self.items.print_quantity_of_results())
         self.items.sort()
         self.item.select_tool(0)
         self.item.select_add()
