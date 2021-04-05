@@ -12,6 +12,8 @@ class items():
         self.print = (By.XPATH, '//span[@class="ui-search-search-result__quantity-results"]')
         self.select = (By.XPATH, '//button[@class="andes-dropdown__trigger"]')
         self.sort_price = (By.XPATH, '//li[@value="price_desc"]')
+        self.title_results = (By.XPATH, '//h2[@class="ui-search-item__title"]')
+        self.price_results = (By.XPATH, '//span[@class="price-tag-fraction"]')
 
     def search_result(self):
         return WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(self.text_result)).text
@@ -21,8 +23,13 @@ class items():
         WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(self.select_delivery)).click()
     
     def print_quantity_of_results(self):
-        return WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(self.print)).text
+        print(WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(self.print)).text)
 
     def sort(self):
         WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable(self.select)).click()
         WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable(self.sort_price)).click()
+
+    def print_title_and_price(self, number):
+        for i in range(number):
+            print(self.driver.find_elements(*self.title_results)[i].text)
+            print(self.driver.find_elements(*self.price_results)[i].text)
