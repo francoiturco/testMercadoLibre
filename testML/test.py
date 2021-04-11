@@ -1,9 +1,10 @@
 import unittest
 from selenium import webdriver
 import time
-from indexPage import index
-from itemsPage import items
-from itemPage import item
+
+from page_objects.indexPage import index
+from page_objects.itemsPage import items
+from page_objects.itemPage import item
 from selenium.webdriver.chrome.options import Options
 
 class Test(unittest.TestCase):
@@ -11,7 +12,8 @@ class Test(unittest.TestCase):
     def setUp(self):
         option = Options()
         option.add_argument('start-maximized')
-        self.driver = webdriver.Chrome('chromedriver.exe', chrome_options=option)
+        option.add_argument('--headless')
+        self.driver = webdriver.Chrome('testML/driver/chromedriver.exe', chrome_options=option)
         self.driver.get('https://www.mercadolibre.com.ar/')
         self.driver.implicitly_wait(5)
         self.index = index(self.driver)
